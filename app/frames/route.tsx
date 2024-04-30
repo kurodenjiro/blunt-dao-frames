@@ -9,7 +9,7 @@ const client = new NeynarAPIClient(process.env.NEYNAR_API_KEY || "");
 
 const getAddr = async (nftAddr: string): Promise<string[]> => {
   const apiKey = process.env.ALCHEMY_API_KEY;
-  const baseUrl = `https://eth-sepolia.g.alchemy.com/nft/v3/${apiKey}/getOwnersForContract?`;
+  const baseUrl = `${process.env.ALCHEMY_URL}/nft/v3/${apiKey}/getOwnersForContract?`;
   const url = `${baseUrl}contractAddress=${nftAddr}&withTokenBalances=false`;
 
   const result = await fetch(url, {
