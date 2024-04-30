@@ -4,14 +4,20 @@ import { zora } from "viem/chains";
 import { Button } from "frames.js/next";
 import { frames } from "./frames";
 import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { ZDK ,ZDKNetwork , ZDKChain} from "@zoralabs/zdk";
 
 const client = new NeynarAPIClient(process.env.NEYNAR_API_KEY || "");
+const API_ENDPOINT = "https://api.zora.co/graphql";
+const networkInfo = {
+  network: ZDKNetwork.Zora,
+  chain: ZDKChain.ZoraMainnet,
+};
+const zdk = new ZDK({ endpoint: API_ENDPOINT , networks:[networkInfo]}); // Defaults to Ethereum Mainnet
 
-const getAddr = async (nftAddr: string): Promise<string[]> => {
+const getAddrByALCHEMY = async (nftAddr: string): Promise<string[]> => {
   const apiKey = process.env.ALCHEMY_API_KEY;
-  const baseUrl = `${process.env.ALCHEMY_URL}/nft/v3/${apiKey}/getOwnersForContract?`;
+  const baseUrl = `${process.env.ALCHEMY_URL}/nft/v2/${apiKey}/getNFTsForCollection?`;
   const url = `${baseUrl}contractAddress=${nftAddr}&withTokenBalances=false`;
-
   const result = await fetch(url, {
     headers: { accept: "application/json" },
   });
@@ -82,17 +88,32 @@ const handleRequest = frames(async (ctx) => {
   if (!ctx.message) {
     return initialFrame;
   }
-  console.log("ctx.message", ctx.message);
+
   const { requesterFid } = ctx.message;
 
-  const nftAddr: string = "0xBAE9dD42C2B69Cfa4D457384297Fcf6bec72C0c4";
-  const addrs: any = await getAddr(nftAddr);
+  const nftAddr: string = "0xa3f9400dc6e8474382a3ec99f761e0fbcc467493";
+  const args = {
+    where: {
+      tokens: [
+        {
+          address: nftAddr,
+          tokenId:'2',
+        },
+
+      ],
+    },
+    includeFullDetails: true, // Optional, provides more data on the NFT such as all historical events
+  }
+
+  const { mints } = await zdk.mints(args)
+  //const addrs: any = await getAddr(nftAddr);
+  const addrs = mints.nodes.map((mint:any) => mint.mint.originatorAddress);
   const userData = await client.lookupUserByFid(requesterFid);
   const fids: any = await fidLookup(addrs);
   let isValidator = false;
   isValidator = addrs.includes(userData.result.user.custodyAddress);
   console.log("addrs", addrs);
-  console.log("fids", fids);
+  //console.log("fids", fids);
 
   if (addrs.length > 0 && isValidator == false) {
     const page = Number(ctx.searchParams?.pageIndex) < 0 ? 0 : Number(ctx.searchParams?.pageIndex ?? 0);
@@ -128,7 +149,7 @@ const handleRequest = frames(async (ctx) => {
         </Button>,
       ],
     } satisfies types.FrameDefinition<any>;
-  } 
+  }
   if (addrs.length > 0 && isValidator) {
     return {
       image: (
