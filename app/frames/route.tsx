@@ -112,9 +112,10 @@ const handleRequest = frames(async (ctx) => {
   console.log("addrs", addrs);
   console.log("userData", userData);
   if (addrs.length > 0 && isValidator == false) {
-    const page = Number(ctx.searchParams?.pageIndex ?? 0);
+    const page = Number(ctx.searchParams?.pageIndex) < 0 ? 0 : Number(ctx.searchParams?.pageIndex ?? 0);
+
     return {
-      image: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Blunt </div>,
+      image: nfts[page]!.src,
       imageOptions: {
         aspectRatio: "1:1",
       },
@@ -123,7 +124,7 @@ const handleRequest = frames(async (ctx) => {
           action="post"
           target={{
             query: {
-              pageIndex: 1,
+              pageIndex: String((page - 1) % nfts.length),
             },
           }}
         >
@@ -133,14 +134,14 @@ const handleRequest = frames(async (ctx) => {
           action="post"
           target={{
             query: {
-              pageIndex: 2,
+              pageIndex: String((page + 1) % nfts.length),
             },
           }}
         >
           →
         </Button>,
-        <Button action="mint" target={nfts[page]!.tokenUrl}>
-          {`Mint 1`}
+        <Button action="link" target={nfts[page]!.tokenUrl}>
+          {`Mint ${page == 0 ? "Blunt" : page == 1 ? "Joint" : page == 2 ? "Spliff" : ""}`}
         </Button>,
       ],
     } satisfies types.FrameDefinition<any>;
