@@ -123,7 +123,7 @@ const handleRequest = frames(async (ctx) => {
           action="post"
           target={{
             query: {
-              pageIndex: String((page - 1) % nfts.length),
+              pageIndex: 1,
             },
           }}
         >
@@ -133,7 +133,7 @@ const handleRequest = frames(async (ctx) => {
           action="post"
           target={{
             query: {
-              pageIndex: String((page + 1) % nfts.length),
+              pageIndex: 2,
             },
           }}
         >
