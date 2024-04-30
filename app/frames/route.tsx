@@ -85,10 +85,19 @@ const handleRequest = frames(async (ctx) => {
       tokens: [
         {
           address: nftAddr,
+          tokenId: '1',
+        },
+        {
+          address: nftAddr,
           tokenId: '2',
+        },
+        {
+          address: nftAddr,
+          tokenId: '3',
         },
 
       ],
+      
     },
     includeFullDetails: true, // Optional, provides more data on the NFT such as all historical events
   }
@@ -102,7 +111,6 @@ const handleRequest = frames(async (ctx) => {
   isValidator = addrs.includes(userData.result.user.custodyAddress);
   console.log("addrs", addrs);
   //console.log("fids", fids);
-
   if (addrs.length > 0 && isValidator == false) {
     const page = Number(ctx.searchParams?.pageIndex) < 0 ? 0 : Number(ctx.searchParams?.pageIndex ?? 0);
 
