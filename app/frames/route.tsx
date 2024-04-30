@@ -38,7 +38,7 @@ const nfts: {
   tokenUrl: string;
 }[] = [
     {
-      src: "https://bafybeibltcfgy4crxrij4yy63sefu2a6ega7jvf6sprbwh5wkxzzrarjb4.ipfs.nftstorage.link/",
+      src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeibltcfgy4crxrij4yy63sefu2a6ega7jvf6sprbwh5wkxzzrarjb4&w=1920&q=75",
       tokenUrl: getTokenUrl({
         address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
         chain: zora,
@@ -46,7 +46,7 @@ const nfts: {
       }),
     },
     {
-      src: "https://bafybeiaqdkw6fzyi3yuec3sdkk6a5tsfyqsznytqwyssdrvqfzq5bpx4iu.ipfs.nftstorage.link/",
+      src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeiaqdkw6fzyi3yuec3sdkk6a5tsfyqsznytqwyssdrvqfzq5bpx4iu&w=1920&q=75",
       tokenUrl: getTokenUrl({
         address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
         chain: zora,
@@ -54,7 +54,7 @@ const nfts: {
       }),
     },
     {
-      src: "https://bafybeiblargpzhwxgmbzzci6n6oubfhcw33cdqb4uqx62sxrvf5biwcszi.ipfs.nftstorage.link/",
+      src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeiblargpzhwxgmbzzci6n6oubfhcw33cdqb4uqx62sxrvf5biwcszi&w=1920&q=75",
       tokenUrl: getTokenUrl({
         address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
         chain: zora,
