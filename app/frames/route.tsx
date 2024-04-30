@@ -112,8 +112,7 @@ const handleRequest = frames(async (ctx) => {
   console.log("addrs", addrs);
   console.log("userData", userData);
   if (addrs.length > 0 && isValidator == false) {
-    const page = Number(ctx.searchParams?.pageIndex) < 0 ? 0 : Number(ctx.searchParams?.pageIndex ?? 0);
-
+    const page = Number(ctx.searchParams?.pageIndex ?? 0);
     return {
       image: nfts[page]!.src,
       imageOptions: {
