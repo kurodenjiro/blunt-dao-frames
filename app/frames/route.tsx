@@ -1,6 +1,6 @@
 import { types } from "frames.js/core";
 import { getTokenUrl } from "frames.js";
-import { sepolia } from "viem/chains";
+import { zora } from "viem/chains";
 import { Button } from "frames.js/next";
 import { frames } from "./frames";
 import { NeynarAPIClient } from "@neynar/nodejs-sdk";
@@ -40,25 +40,25 @@ const nfts: {
     {
       src: "https://bafybeibltcfgy4crxrij4yy63sefu2a6ega7jvf6sprbwh5wkxzzrarjb4.ipfs.nftstorage.link/",
       tokenUrl: getTokenUrl({
-        address: "0xBAE9dD42C2B69Cfa4D457384297Fcf6bec72C0c4",
-        chain: sepolia,
-        tokenId: "0",
+        address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
+        chain: zora,
+        tokenId: "1",
       }),
     },
     {
       src: "https://bafybeiaqdkw6fzyi3yuec3sdkk6a5tsfyqsznytqwyssdrvqfzq5bpx4iu.ipfs.nftstorage.link/",
       tokenUrl: getTokenUrl({
-        address: "0xBAE9dD42C2B69Cfa4D457384297Fcf6bec72C0c4",
-        chain: sepolia,
-        tokenId: "1",
+        address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
+        chain: zora,
+        tokenId: "2",
       }),
     },
     {
       src: "https://bafybeiblargpzhwxgmbzzci6n6oubfhcw33cdqb4uqx62sxrvf5biwcszi.ipfs.nftstorage.link/",
       tokenUrl: getTokenUrl({
-        address: "0xBAE9dD42C2B69Cfa4D457384297Fcf6bec72C0c4",
-        chain: sepolia,
-        tokenId: "2",
+        address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
+        chain: zora,
+        tokenId: "3",
       }),
     },
   ];
