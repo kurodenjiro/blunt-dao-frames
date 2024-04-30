@@ -45,27 +45,15 @@ const nfts: {
 }[] = [
     {
       src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeibltcfgy4crxrij4yy63sefu2a6ega7jvf6sprbwh5wkxzzrarjb4&w=1920&q=75",
-      tokenUrl: getTokenUrl({
-        address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
-        chain: zora,
-        tokenId: "1",
-      }),
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/1`
     },
     {
       src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeiaqdkw6fzyi3yuec3sdkk6a5tsfyqsznytqwyssdrvqfzq5bpx4iu&w=1920&q=75",
-      tokenUrl: getTokenUrl({
-        address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
-        chain: zora,
-        tokenId: "2",
-      }),
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/2`
     },
     {
       src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeiblargpzhwxgmbzzci6n6oubfhcw33cdqb4uqx62sxrvf5biwcszi&w=1920&q=75",
-      tokenUrl: getTokenUrl({
-        address: "0x6f64c4bc37afeec49815814139e27df1186ca43e",
-        chain: zora,
-        tokenId: "3",
-      }),
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/3`
     },
   ];
 const handleRequest = frames(async (ctx) => {
@@ -91,7 +79,7 @@ const handleRequest = frames(async (ctx) => {
 
   const { requesterFid } = ctx.message;
 
-  const nftAddr: string = "0xa3f9400dc6e8474382a3ec99f761e0fbcc467493";
+  const nftAddr: string = "0x6f64c4bc37afeec49815814139e27df1186ca43e";
   const args = {
     where: {
       tokens: [
