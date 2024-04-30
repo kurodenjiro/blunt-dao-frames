@@ -106,11 +106,11 @@ const handleRequest = frames(async (ctx) => {
   //const addrs: any = await getAddr(nftAddr);
   const addrs = mints.nodes.map((mint: any) => mint.mint.originatorAddress);
   const userData = await client.lookupUserByFid(requesterFid);
-  const fids: any = await fidLookup(addrs);
+  //const fids: any = await fidLookup(addrs);
   let isValidator = false;
   isValidator = addrs.includes(userData.result.user.custodyAddress);
   console.log("addrs", addrs);
-  //console.log("fids", fids);
+  console.log("userData", userData);
   if (addrs.length > 0 && isValidator == false) {
     const page = Number(ctx.searchParams?.pageIndex) < 0 ? 0 : Number(ctx.searchParams?.pageIndex ?? 0);
 
