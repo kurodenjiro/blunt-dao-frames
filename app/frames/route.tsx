@@ -4,7 +4,7 @@ import { zora } from "viem/chains";
 import { Button } from "frames.js/next";
 import { frames } from "./frames";
 import { NeynarAPIClient } from "@neynar/nodejs-sdk";
-import { ZDK ,ZDKNetwork , ZDKChain} from "@zoralabs/zdk";
+import { ZDK, ZDKNetwork, ZDKChain } from "@zoralabs/zdk";
 
 const client = new NeynarAPIClient(process.env.NEYNAR_API_KEY || "");
 const API_ENDPOINT = "https://api.zora.co/graphql";
@@ -12,7 +12,7 @@ const networkInfo = {
   network: ZDKNetwork.Zora,
   chain: ZDKChain.ZoraMainnet,
 };
-const zdk = new ZDK({ endpoint: API_ENDPOINT , networks:[networkInfo]}); // Defaults to Ethereum Mainnet
+const zdk = new ZDK({ endpoint: API_ENDPOINT, networks: [networkInfo] }); // Defaults to Ethereum Mainnet
 
 const getAddrByALCHEMY = async (nftAddr: string): Promise<string[]> => {
   const apiKey = process.env.ALCHEMY_API_KEY;
@@ -40,20 +40,20 @@ const fidLookup = async (addrs: string[]) => {
 };
 
 const nfts: {
-  src: string;
+  src: any;
   tokenUrl: string;
 }[] = [
     {
-      src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeibltcfgy4crxrij4yy63sefu2a6ega7jvf6sprbwh5wkxzzrarjb4&w=1920&q=75",
-      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/1`
+      src: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Blunt </div>,
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-1`
     },
     {
-      src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeiaqdkw6fzyi3yuec3sdkk6a5tsfyqsznytqwyssdrvqfzq5bpx4iu&w=1920&q=75",
-      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/2`
+      src: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Joint </div>,
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-2`
     },
     {
-      src: "https://remote-image.decentralized-content.com/image?url=https%3A%2F%2Fmagic.decentralized-content.com%2Fipfs%2Fbafybeiblargpzhwxgmbzzci6n6oubfhcw33cdqb4uqx62sxrvf5biwcszi&w=1920&q=75",
-      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/3`
+      src:<div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Spliff </div>,
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-3`
     },
   ];
 const handleRequest = frames(async (ctx) => {
@@ -85,7 +85,7 @@ const handleRequest = frames(async (ctx) => {
       tokens: [
         {
           address: nftAddr,
-          tokenId:'2',
+          tokenId: '2',
         },
 
       ],
@@ -95,7 +95,7 @@ const handleRequest = frames(async (ctx) => {
 
   const { mints } = await zdk.mints(args)
   //const addrs: any = await getAddr(nftAddr);
-  const addrs = mints.nodes.map((mint:any) => mint.mint.originatorAddress);
+  const addrs = mints.nodes.map((mint: any) => mint.mint.originatorAddress);
   const userData = await client.lookupUserByFid(requesterFid);
   const fids: any = await fidLookup(addrs);
   let isValidator = false;
@@ -138,15 +138,15 @@ const handleRequest = frames(async (ctx) => {
       ],
     } satisfies types.FrameDefinition<any>;
   }
-  // if(addrs.length == 0){
-  //   return {
-  //     image: (
-  //       <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex">
-  //         You haven't followed anyone to become a validator.
-  //       </div>
-  //     ),
-  //   } satisfies types.FrameDefinition<any>;
-  // }
+  if (addrs.length == 0) {
+    return {
+      image: (
+        <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex">
+          You haven't followed anyone to become a validator.
+        </div>
+      ),
+    } satisfies types.FrameDefinition<any>;
+  }
   if (addrs.length > 0 && isValidator) {
     return {
       image: (
