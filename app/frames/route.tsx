@@ -140,7 +140,7 @@ const handleRequest = frames(async (ctx) => {
           →
         </Button>,
         <Button action="mint" target={nfts[page]!.tokenUrl}>
-          {`Mint ${page == 0 ? "Blunt" : page == 1 ? "Joint" : page == 2 ? "Spliff" : ""}`}
+          {`Mint 1`}
         </Button>,
       ],
     } satisfies types.FrameDefinition<any>;
