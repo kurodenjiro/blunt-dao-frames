@@ -138,6 +138,15 @@ const handleRequest = frames(async (ctx) => {
       ],
     } satisfies types.FrameDefinition<any>;
   }
+  if(addrs.length == 0){
+    return {
+      image: (
+        <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex">
+          You haven't followed anyone to become a validator.
+        </div>
+      ),
+    } satisfies types.FrameDefinition<any>;
+  }
   if (addrs.length > 0 && isValidator) {
     return {
       image: (
