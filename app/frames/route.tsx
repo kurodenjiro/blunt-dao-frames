@@ -52,7 +52,7 @@ const nfts: {
       tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-2`
     },
     {
-      src:<div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Spliff </div>,
+      src: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Spliff </div>,
       tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-3`
     },
   ];
@@ -97,7 +97,7 @@ const handleRequest = frames(async (ctx) => {
         },
 
       ],
-      
+
     },
     includeFullDetails: true, // Optional, provides more data on the NFT such as all historical events
   }
@@ -115,34 +115,22 @@ const handleRequest = frames(async (ctx) => {
     const page = Number(ctx.searchParams?.pageIndex) < 0 ? 0 : Number(ctx.searchParams?.pageIndex ?? 0);
 
     return {
-      image: nfts[page]!.src,
+      image: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex">
+        Choose your validator
+      </div>,
       imageOptions: {
         aspectRatio: "1:1",
       },
       buttons: [
-        <Button
-          action="post"
-          target={{
-            query: {
-              pageIndex: String((page - 1) % nfts.length),
-            },
-          }}
-        >
-          ←
+        <Button action="link" target={nfts[0]!.tokenUrl}>
+          Mint Blunt
         </Button>,
-        <Button
-          action="post"
-          target={{
-            query: {
-              pageIndex: String((page + 1) % nfts.length),
-            },
-          }}
-        >
-          →
+        <Button action="link" target={nfts[1]!.tokenUrl}>
+          Mint Joint
         </Button>,
-        <Button action="link" target={nfts[page]!.tokenUrl}>
-          {`Mint ${page == 0 ? "Blunt" : page == 1 ? "Joint" : page == 2 ? "Spliff" : ""}`}
-        </Button>,
+        <Button action="link" target={nfts[2]!.tokenUrl}>
+          Mint Spliff
+        </Button>
       ],
     } satisfies types.FrameDefinition<any>;
   }
