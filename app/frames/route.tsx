@@ -112,37 +112,12 @@ const handleRequest = frames(async (ctx) => {
   console.log("addrs", addrs);
   console.log("userData", userData);
   if (addrs.length > 0 && isValidator == false) {
-    const page = Number(ctx.searchParams?.pageIndex ?? 0);
     return {
-      image: nfts[page]!.src,
-      imageOptions: {
-        aspectRatio: "1:1",
-      },
-      buttons: [
-        <Button
-          action="post"
-          target={{
-            query: {
-              pageIndex: String((page - 1) % nfts.length),
-            },
-          }}
-        >
-          ←
-        </Button>,
-        <Button
-          action="post"
-          target={{
-            query: {
-              pageIndex: String((page + 1) % nfts.length),
-            },
-          }}
-        >
-          →
-        </Button>,
-        <Button action="mint" target={nfts[page]!.tokenUrl}>
-          {`Mint ${page == 0 ? "Blunt" : page == 1 ? "Joint" : page == 2 ? "Spliff" : ""}`}
-        </Button>,
-      ],
+      image: (
+        <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex">
+          You haven't followed anyone to become a validator.
+        </div>
+      ),
     } satisfies types.FrameDefinition<any>;
   }
   if (addrs.length == 0) {
