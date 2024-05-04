@@ -45,15 +45,15 @@ const nfts: {
 }[] = [
     {
       src: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Blunt </div>,
-      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-1`
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/1`
     },
     {
       src: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Joint </div>,
-      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-2`
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/2`
     },
     {
       src: <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex"> Spliff </div>,
-      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/premint-3`
+      tokenUrl: `https://zora.co/collect/zora:0x6f64c4bc37afeec49815814139e27df1186ca43e/3`
     },
   ];
 const handleRequest = frames(async (ctx) => {
